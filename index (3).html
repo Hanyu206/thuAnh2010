@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Một lá thư nhỏ 💌</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600&family=Be+Vietnam+Pro:wght@400&display=swap">
+<style>
+:root{--bg1:#fffaf5;--bg2:#ffe9ef;--ink:#5a3a46;--soft:#a07a88;--rose:#e0709a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:linear-gradient(180deg,var(--bg1),var(--bg2)) fixed;color:var(--ink);font-family:'Be Vietnam Pro',system-ui,sans-serif;overflow-x:hidden}
+#garden{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.fl{position:absolute;line-height:1;transform-origin:50% 100%;animation:sway 5s ease-in-out infinite alternate;filter:drop-shadow(0 4px 6px #c06a8a33)}
+@keyframes sway{from{transform:rotate(-5deg)}to{transform:rotate(5deg)}}
+.petal{position:fixed;top:-40px;z-index:0;pointer-events:none;animation:fall linear forwards;opacity:.8}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+main{position:relative;z-index:1;min-height:100vh;display:grid;justify-items:center;align-items:start;padding:max(150px,18vh) 16px 120px}
+main>*{grid-area:1/1;min-width:0}
+.envbox{display:flex;flex-direction:column;align-items:center;transition:opacity 1s ease,transform 1.1s cubic-bezier(.4,0,.2,1)}
+.envbox.gone{opacity:0;transform:translateY(60px) scale(.92);pointer-events:none}
+.hint{font-family:'Dancing Script',cursive;font-size:1.5rem;color:var(--rose);margin-top:34px;transition:opacity .5s;animation:bob 1.8s ease-in-out infinite;text-align:center}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.env{position:relative;width:min(320px,86vw);height:210px;cursor:pointer}
+.back{position:absolute;inset:0;background:#efb7c8;border-radius:3px;box-shadow:0 14px 30px #c06a8a40}
+.sheet{position:absolute;left:8%;right:8%;top:10px;bottom:6px;background:#fffdf9;border-radius:6px;z-index:2;transition:transform 1.1s cubic-bezier(.22,.8,.3,1) .85s;padding:14px;font-family:'Dancing Script',cursive;color:var(--soft);font-size:1.3rem}
+.env.open .sheet{transform:translateY(-96px)}
+.front{position:absolute;inset:0;width:100%;height:100%;z-index:3;display:block}
+.flap{position:absolute;top:0;left:0;width:100%;height:55%;transform-origin:50% 0;z-index:4;display:block}
+.flap-up{position:absolute;left:0;top:-55%;width:100%;height:55%;transform-origin:50% 100%;z-index:1;display:block;opacity:0}
+.env.open .flap{animation:flapClose .4s cubic-bezier(.5,0,.9,.6) forwards}
+.env.open .flap-up{animation:flapUp .5s cubic-bezier(.1,.5,.3,1) .38s forwards}
+@keyframes flapClose{0%{transform:perspective(900px) rotateX(0deg);opacity:1}99%{opacity:1}100%{transform:perspective(900px) rotateX(90deg);opacity:0}}
+@keyframes flapUp{0%{transform:perspective(900px) rotateX(90deg);opacity:1}100%{transform:perspective(900px) rotateX(0deg);opacity:1}}
+.seal{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-size:2rem;z-index:5;transition:opacity .3s}
+.env.open .seal{opacity:0}
+#paper{width:min(460px,100%);background:#fffdf9;background-image:repeating-linear-gradient(transparent 0 37px,#f3dce3 37px 38px);border-radius:10px;box-shadow:0 18px 44px #c06a8a40;padding:34px 28px 30px;font-family:'Dancing Script',cursive;font-weight:500;font-size:1.45rem;line-height:38px;color:var(--ink);position:relative}
+#wrap{position:relative;display:none;width:min(460px,100%);opacity:0;transform:translateY(80px) scale(.72);transform-origin:50% 0;transition:opacity 1s ease,transform 1.3s cubic-bezier(.22,.8,.3,1)}
+#wrap.show{display:block}
+#wrap.in{opacity:1;transform:none}
+#paper p{margin:0 0 38px;opacity:0;transform:translateY(10px);animation:fadein 1.1s cubic-bezier(.22,.8,.3,1) forwards}
+@keyframes fadein{to{opacity:1;transform:none}}
+#paper .to{font-size:1.8rem;color:var(--rose)}
+#paper .from{text-align:right;font-size:1.55rem;color:var(--rose);margin:0}
+.date{position:absolute;top:10px;right:20px;font-size:1rem;line-height:1.2;color:var(--soft)}
+#paper{cursor:pointer}
+.cat{position:absolute;right:26px;top:-78px;width:96px;z-index:2;opacity:0;transition:opacity .9s ease 1.2s;pointer-events:none}
+#wrap.in .cat{opacity:1}
+.cat svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 0 .7px #b99682) drop-shadow(0 0 .7px #b99682) drop-shadow(0 3px 3px #c06a8a33)}
+.cat .tail{transform-box:fill-box;transform-origin:10% 90%;animation:tail 2.4s ease-in-out infinite alternate}
+@keyframes tail{from{transform:rotate(-8deg)}to{transform:rotate(14deg)}}
+.cat .eye{transform-box:fill-box;transform-origin:center;animation:blink 4.5s infinite}
+@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+.skip{text-align:center;font-family:'Dancing Script',cursive;font-size:1.25rem;color:var(--soft);margin:14px 0 0;transition:opacity .6s}
+.replay{display:block;margin:18px auto 0;font:inherit;font-family:'Dancing Script',cursive;font-size:1.3rem;color:var(--rose);background:#ffffffcc;border:1.5px solid var(--rose);border-radius:999px;padding:6px 20px;cursor:pointer}
+</style>
+</head>
+<body>
+<div id="garden"></div>
+<main>
+  <div class="envbox" id="envbox">
+  <div class="env" id="env" role="button" tabindex="0" aria-label="Mở phong thư">
+    <div class="back"></div>
+    <div class="sheet">Gửi Ánh…</div>
+    <svg class="front" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,0 50,55 100,0 100,100 0,100" fill="#f8d3de"/></svg>
+    <svg class="flap-up" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,100 100,100 50,0" fill="#e99bb3"/></svg>
+    <svg class="flap" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><polygon points="0,0 100,0 50,100" fill="#e99bb3"/></svg>
+    <div class="seal">💗</div>
+  </div>
+  <div class="hint" id="hint">Chạm vào phong thư để mở nhé 💌</div>
+  </div>
+
+  <div id="wrap">
+    <div class="cat" aria-hidden="true">
+      <svg viewBox="0 0 100 90">
+        <g class="tail"><path d="M76 80 C98 78 100 52 86 46" fill="none" stroke="#c9ab98" stroke-width="10" stroke-linecap="round"/><path d="M76 80 C98 78 100 52 86 46" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/></g>
+        <ellipse cx="50" cy="62" rx="28" ry="24" fill="#ffffff"/>
+        <ellipse cx="50" cy="69" rx="15" ry="16" fill="#f6efec"/>
+        <ellipse cx="40" cy="84" rx="8" ry="5" fill="#ffffff"/>
+        <ellipse cx="60" cy="84" rx="8" ry="5" fill="#ffffff"/>
+        <polygon points="32,22 34,2 49,14" fill="#ffffff"/>
+        <polygon points="68,22 66,2 51,14" fill="#ffffff"/>
+        <polygon points="36,16 36,8 43,13" fill="#f7a8b8"/>
+        <polygon points="64,16 64,8 57,13" fill="#f7a8b8"/>
+        <circle cx="50" cy="34" r="22" fill="#ffffff"/>
+        <path d="M50 13v7M43 14l1 5M57 14l-1 5" stroke="#e3dbd7" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="35" cy="42" r="4" fill="#f9a3b5" opacity=".55"/>
+        <circle cx="65" cy="42" r="4" fill="#f9a3b5" opacity=".55"/>
+        <ellipse class="eye" cx="42" cy="34" rx="3" ry="4" fill="#4a2f2f"/>
+        <ellipse class="eye" cx="58" cy="34" rx="3" ry="4" fill="#4a2f2f"/>
+        <polygon points="47,40 53,40 50,44" fill="#f08aa0"/>
+        <path d="M50 44q-4 5-8 2M50 44q4 5 8 2" fill="none" stroke="#7a4a4a" stroke-width="1.4" stroke-linecap="round"/>
+        <path d="M30 40l-12-2M30 44l-12 3M70 40l12-2M70 44l12 3" stroke="#c79a78" stroke-width="1" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <article id="paper"></article>
+    <p class="skip" id="skip">Chạm vào lá thư để hiện hết ✨</p>
+    <button class="replay" id="replay">Gấp thư lại 💌</button>
+  </div>
+</main>
+
+<script>
+// ✏️ SỬA NỘI DUNG THƯ Ở ĐÂY
+const NAME = "Ánh";
+const FROM = "Một người nào đó vẫn luôn nhớ em";
+const DATE = "20/10/2026";
+const PARAS = [
+  "Hơn 4 tháng qua, anh thật sự rất vui vì đã quen được em, được trò chuyện cùng em, thậm chí là đã được yêu em, mặc dù lúc đó anh đã hơi vội vàng mà không nghĩ đến cảm giác của em...",
+  "Dạo gần đây, anh rep tin nhắn em qua loa, làm em buồn. Anh rất xin lỗi vì chuyện đó. Không phải là anh không muốn nói chuyện với em, mà anh nghĩ là anh sắp xếp chưa tốt, khi tập trung vào việc gì là anh không quan tâm thứ gì khác nữa...",
+  "Anh biết là anh cần sửa, và anh cũng đã cố gắng để nhắn tin với em. Với anh, những cuộc trò chuyện với em rất quan trọng. Có vẻ là anh đang bị stress, anh nghĩ là anh sẽ trở lại được, nhưng không biết bao giờ mới đến lúc đó. Chờ anh nha, được không?",
+  "Cuối cùng thì, gửi đến em một lời chúc 20/10 ngọt ngào nhất, luôn nở một nụ cười trên môi và tràn ngập tình yêu thương... À còn nữa, lúc em đọc được lá thư này chắc cũng vào kì thi giữa kì rồi, chúc em thi tốt và đạt được kết quả mong muốn nhé 🍀"
+];
+
+const $ = id => document.getElementById(id);
+
+// Vườn hoa phía sau
+const FLOWERS = ["🌷","🌸","🌹","🌼","💐","🌺"];
+const g = $("garden");
+function flower(css, size, delay){
+  const f = document.createElement("div");
+  f.className = "fl";
+  f.textContent = FLOWERS[Math.floor(Math.random()*FLOWERS.length)];
+  f.style.cssText = css + ";font-size:" + size + "px;animation-delay:" + delay + "s";
+  g.appendChild(f);
+}
+for(let i=0;i<10;i++) flower("left:" + (i*10 - 2 + Math.random()*4) + "%;bottom:" + (-14 + Math.random()*16) + "px", 62 + Math.random()*40, Math.random()*3);
+for(let i=0;i<6;i++){
+  flower("left:" + (-2 + Math.random()*5) + "%;top:" + (8 + i*14) + "%", 38 + Math.random()*22, Math.random()*3);
+  flower("right:" + (-2 + Math.random()*5) + "%;top:" + (12 + i*14) + "%", 38 + Math.random()*22, Math.random()*3);
+}
+
+function petals(n){
+  const icons = ["🌸","💮","🌷","🌼","🌹","🌸"];
+  for(let i=0;i<n;i++){
+    const p = document.createElement("span");
+    p.className = "petal";
+    p.textContent = icons[Math.floor(Math.random()*icons.length)];
+    p.style.left = Math.random()*100 + "vw";
+    p.style.fontSize = (14 + Math.random()*14) + "px";
+    p.style.animationDuration = (6 + Math.random()*6) + "s";
+    p.style.animationDelay = (Math.random()*3) + "s";
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 15000);
+  }
+}
+
+let skipTimer = null;
+function revealAll(){
+  document.querySelectorAll("#paper p").forEach(p => {
+    if(parseFloat(getComputedStyle(p).opacity) < 0.99){
+      p.style.animation = "fadein .6s ease forwards";
+    }
+  });
+  $("skip").style.opacity = "0";
+  clearTimeout(skipTimer);
+}
+function buildLetter(){
+  const paper = $("paper");
+  paper.innerHTML = '<div class="date">' + DATE + '</div>';
+  let t = 1;
+  const add = (cls, text, gap) => {
+    const p = document.createElement("p");
+    if(cls) p.className = cls;
+    p.textContent = text;
+    p.style.animationDelay = t.toFixed(2) + "s";
+    paper.appendChild(p);
+    t += gap;
+  };
+  add("to", "Gửi " + NAME + ",", 1.2);
+  PARAS.forEach(s => add("", s, 0.6 + s.length * 0.02));
+  add("from", FROM, 0);
+  paper.onclick = revealAll;
+  $("skip").style.opacity = "1";
+  clearTimeout(skipTimer);
+  skipTimer = setTimeout(() => { $("skip").style.opacity = "0"; }, (t + 1.5) * 1000);
+}
+
+let busy = false;
+function openEnv(){
+  const env = $("env");
+  if(busy || env.classList.contains("open")) return;
+  busy = true;
+  env.classList.add("open");
+  $("hint").style.opacity = "0";
+  petals(24);
+  setTimeout(() => {
+    buildLetter();
+    const wrap = $("wrap");
+    wrap.classList.add("show");
+    void wrap.offsetWidth;
+    wrap.classList.add("in");
+    $("envbox").classList.add("gone");
+    petals(70);
+    setTimeout(() => { busy = false; }, 1400);
+  }, 2100);
+}
+$("env").onclick = openEnv;
+$("env").onkeydown = e => { if(e.key === "Enter" || e.key === " ") openEnv(); };
+$("replay").onclick = () => {
+  if(busy) return;
+  busy = true;
+  const wrap = $("wrap");
+  wrap.classList.remove("in");
+  $("envbox").classList.remove("gone");
+  $("env").classList.remove("open");
+  $("hint").style.opacity = "";
+  setTimeout(() => { wrap.classList.remove("show"); busy = false; }, 900);
+};
+petals(20);
+setInterval(() => { if(!document.hidden) petals(3); }, 900);
+</script>
+</body>
+</html>
